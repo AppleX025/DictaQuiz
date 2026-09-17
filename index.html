@@ -37,6 +37,11 @@
       color: var(--dark);
       margin: 0 0 12px;         /* top, right, bottom, left: only space below */
     }
+    h2 {
+      font-size: 28px;
+      color: var(--dark);
+      margin: 0 0 8px;          /* only space below */
+    }
 
     /* ===== Header card (like the label on her notebook) ===== */
     header {
@@ -74,6 +79,89 @@
       padding: 10px 8px;           /* tall enough to tap, narrow enough to fit */
       font-size: 16px;
       font-family: inherit;        /* no quotes: use the page font (Nunito) */
+    }
+
+    /* ===== List CSS ===== */
+    #results_list {
+      list-style: none;            /* no bullets */
+      padding: 0;                  /* no indentation */
+      margin: 0;                   /* no extra space above or below */
+    }
+    #results_list li {
+      background-color: var(--card);
+      border-left: 6px solid var(--main);
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin-bottom: 10px;
+    }
+    .term {
+      font-weight: bold;
+      font-size: 22px;
+      color: var(--dark);
+    }
+    .translation {
+      color: var(--main);
+      margin-left: 8px;
+    }
+    .meaning, .example {
+      display: block;              /* each on its own line */
+      margin-top: 4px;            /* space above */
+    }
+
+    .example {
+      font-style: italic;
+      color: gray;
+    }
+
+    /* ===== Add Word button ===== */
+    #add_button {
+      position:fixed;  /* stays in the same place on the screen */
+      bottom: 20px; right: 20px;
+      background-color: var(--accent);
+      color: var(--card);
+      border: none;
+      border-radius: 30px;
+      padding: 14px 22px;
+      font-size: 18px;
+      font-family: inherit;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);  /* subtle shadow */
+    }
+
+    /* ===== Add/Edit form panel ===== */
+    #form_panel {
+      background-color: var(--card);
+      border: 3px solid var(--main);
+      border-radius: 16px;
+      padding: 16px;
+      display: block;
+    }
+
+    #form_panel input, #form_panel textarea, #form_panel select {
+      display: block;             /* each on its own line */
+      width: 100%;                /* fill the form panel */
+      box-sizing: border-box;     /* padding counts inside the width */
+      margin-bottom: 10px;        /* space below each field */
+      padding: 10px;
+      font-size: 16px;
+      font-family: inherit;
+      border: 2px solid var(--main);
+      border-radius: 8px;
+    }
+
+    /* ===== Word box + look up button side by side ===== */
+    #lookup_row {
+      display: flex;              /* line up the input and button in a row */
+      gap: 8px;                   /* space between them */
+    }
+    #lookup_row input {
+      flex: 1;                    /* input takes up all the space it can */
+    }
+    #form_panel button{
+      background-color: var(--main);
+      border-radius: 20px;
+      padding: 10px 18px;
+      font-size: 16px;
+      font-family: inherit;
     }
 
   </style>
@@ -123,21 +211,30 @@
     <button type="button" id="add_button">Add Word</button>
 
 <!-- Add/Edit form -->
-    <div id="form_panel">   
-        <input type="text" id="term_input" placeholder="Word">
-        <input type="text" id="translation_input" placeholder="Translation">
-        <textarea id="meaning_input" placeholder="Meaning"></textarea>
-        <input type="text" id="example_input" placeholder="Example">
-        <select id="pos_select">
-            <option value="">Part of Speech</option>
-            <option value="noun">Noun</option>
-            <option value="verb">Verb</option>
-            <option value="adjective">Adjective</option>
-            <option value="adverb">Adverb</option>
-        </select>
-        <input type="text" id="notes_input" placeholder="Notes">
-        <button type="button" id="save_button">Save</button>
-        <button type="button" id="cancel_button">Cancel</button>
+    <div id="form_panel">  
+      <h2 id="form_title">Add Word</h2> 
+      <div id="lookup_row">
+        <input type="text" id="term_input" placeholder="Add a Word">
+        <button type="button" id="lookup_button">Look up</button>
+      </div>
+      <p id="lookup_status"></p>
+      <input type="text" id="translation_input" placeholder="Translation">
+      <textarea id="meaning_input" placeholder="Meaning"></textarea>
+      <input type="text" id="example_input" placeholder="Example">
+      <select id="pos_select">
+          <option value="">Part of Speech</option>
+          <option value="noun">Noun</option>
+          <option value="verb">Verb</option>
+          <option value="adjective">Adjective</option>
+          <option value="adverb">Adverb</option>
+          <option value="pronoun">Pronoun</option>
+          <option value="preposition">Preposition</option>
+          <option value="conjunction">Conjunction</option>
+          <option value="interjection">Interjection</option>
+      </select>
+      <input type="text" id="notes_input" placeholder="Notes">
+      <button type="button" id="save_button">Save</button>
+      <button type="button" id="cancel_button">Cancel</button>
     </div>
   <script>
     // Your JavaScript goes here
