@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <!-- This line makes it fit a phone screen instead of looking tiny -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Dictionary</title>
+  <style>
+        /* ===== Color variables: change a color here and it updates everywhere ===== */
+    :root {
+      --dark: #1b3a5c;     /* navy: normal text and the title */
+      --main: #2f6fa8;     /* ocean blue: borders and tabs */
+      --accent: #4aa3df;   /* sky blue: things that should stand out */
+      --light: #eaf4fb;    /* pale blue: page background */
+      --card: #ffffff;     /* white: header box and entries */
+    }
+
+    /* ===== The whole page ===== */
+    body {
+      font-family: 'Nunito', sans-serif;  /* readable font, with a backup */
+      font-size: 18px;
+      color: var(--dark);                 /* navy text is easy to read */
+      background-color: var(--light);
+      padding: 16px;                      /* keeps content off the screen edges */
+      max-width: 600px;                   /* stops lines getting too wide on a laptop */
+      margin: 0 auto;                     /* centers the page on wide screens */
+    }
+
+    /* ===== Handwritten title ===== */
+    h1 {
+      font-family: 'Caveat', cursive;
+      font-size: 52px;          /* big, but still fits on one line on an iPhone */
+      text-align: center;
+      color: var(--dark);
+      margin: 0 0 12px;         /* top, right, bottom, left: only space below */
+    }
+
+    /* ===== Header card (like the label on her notebook) ===== */
+    header {
+      background-color: var(--card);
+      border: 3px solid var(--main);   /* width, style, color */
+      border-radius: 16px;             /* rounded corners */
+      padding: 16px;
+      margin-bottom: 16px;             /* space before the word list */
+    }
+
+    /* ===== Search box ===== */
+    #search_box {
+      width: 100%;
+      box-sizing: border-box;   /* padding and border count inside the 100% */
+      font-size: 18px;          /* 16px or more stops iPhone from zooming in */
+      padding: 10px;
+      margin-bottom: 12px;
+      border: 2px solid var(--main);
+      border-radius: 8px;
+    }
+
+    /* ===== The box holding the tabs (the "shelf") ===== */
+    #tabs {
+      display: flex;   /* line up the buttons in a row */
+      gap: 8px;        /* even space between buttons */
+    }
+
+    /* ===== The tab buttons themselves (only buttons inside #tabs) ===== */
+    #tabs button {
+      flex: 1;                     /* each tab gets an equal share of the row */
+      background: var(--main);
+      color: var(--card);          /* white text on blue */
+      border: none;
+      border-radius: 20px;         /* pill shape */
+      padding: 10px 8px;           /* tall enough to tap, narrow enough to fit */
+      font-size: 16px;
+      font-family: inherit;        /* no quotes: use the page font (Nunito) */
+    }
+
+  </style>
+</head>
+<body>
+  <!-- Your HTML goes here -->
+    <!-- Search bar and tabs -->
+    <header>
+        <h1>My Dictionary</h1>
+        <input type="search" id="search_box" placeholder="Enter a word...">
+        <div id="tabs">
+            <button type="button" id="all_button"> All </button>
+            <button type="button" id="words_button"> Words </button>
+            <button type="button" id="expressions_button"> Expressions </button>
+        </div>
+    </header>
+    <main>
+        <!-- Word list -->
+        <div id="word_list">
+            <h2>Results</h2>
+            <ul id="results_list">
+                <li>
+                    <span class="term">apple</span>
+                    <span class="translation">manzana</span>
+                    <span class="meaning">a round fruit with red or green skin</span>
+                    <span class="example">I ate an apple for breakfast.</span>
+
+                </li>
+                <li>
+                    <span class="term">banana</span>
+                    <span class="translation">plátano o banana</span>
+                    <span class="meaning">a long curved fruit with yellow skin</span>
+                    <span class="example">Monkeys love to eat bananas.</span>
+
+                </li>
+                <li>
+                    <span class="term">cat</span>
+                    <span class="translation">gato</span>
+                    <span class="meaning">a small domesticated carnivorous mammal</span>
+                    <span class="example">My cat likes to sleep on the couch.</span>
+                    
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <button type="button" id="add_button">Add Word</button>
+
+<!-- Add/Edit form -->
+    <div id="form_panel">   
+        <input type="text" id="term_input" placeholder="Word">
+        <input type="text" id="translation_input" placeholder="Translation">
+        <textarea id="meaning_input" placeholder="Meaning"></textarea>
+        <input type="text" id="example_input" placeholder="Example">
+        <select id="pos_select">
+            <option value="">Part of Speech</option>
+            <option value="noun">Noun</option>
+            <option value="verb">Verb</option>
+            <option value="adjective">Adjective</option>
+            <option value="adverb">Adverb</option>
+        </select>
+        <input type="text" id="notes_input" placeholder="Notes">
+        <button type="button" id="save_button">Save</button>
+        <button type="button" id="cancel_button">Cancel</button>
+    </div>
+  <script>
+    // Your JavaScript goes here
+  </script>
+</body>
+</html>
